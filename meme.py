@@ -47,12 +47,12 @@ def downloadImage(url):
     print(filename, url)
 
     r = requests.get(url)
-    with open(f"./images/${filename}", 'wb') as outfile:
+    with open(f"./images/{filename}", 'wb') as outfile:
         outfile.write(r.content)
 
 
 def downloadImagesInParallel(images):
-    return Pool(4).map(downloadImage, images)
+    return Pool(os.cpu_count()).map(downloadImage, images)
 
 
 memes = []
