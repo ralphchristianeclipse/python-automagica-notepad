@@ -55,35 +55,10 @@ def downloadImagesInParallel(images):
     return Pool(4).map(downloadImage, images)
 
 
-memes = [
-    {
-        'top': 'Dexter ano kinain mo?',
-        'bottom': 'Ekaw'
-    },
-    {
-        'top': 'ahh dexter, filipino accents rock, say it again',
-        'bottom': 'pipsi'
-    },
-    {
-        'top': 'What do you call a device that stores files',
-        'bottom': 'yu-is-bi'
-    },
-    {
-        'top': 'Filipino accents? Love it... say it again',
-        'bottom': 'maykrosop'
-    },
-    {
-        'top': 'ahh dexter, filipino accents rock, say it again',
-        'bottom': 'pisbuk'
-    },
-    {
-        'top': 'Loving filipino accents, aww yeah',
-        'bottom': 'silpun'
-    }, {
-        'top': 'Loving filipino accents, aww yeah',
-        'bottom': 'pukimun'
-    }
-]
+memes = []
+
+with open('memes.json') as jsonFd:
+    memes = json.load(jsonFd)
 
 images = [generateMeme(targetMeme, *meme.values()) for meme in memes]
 
